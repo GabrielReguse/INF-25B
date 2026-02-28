@@ -378,7 +378,10 @@ body {
     box-shadow: 0 0 5px rgba(16, 185, 129, .50);
 }
 
-.item-texto {}
+.item-texto {
+    flex: 1;
+    min-width: 0;
+}
 
 .item-titulo {
     font-size: 14px;

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inf 25B — Conversa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/backGround.css"/>
+  <link rel="stylesheet" href="../css/conversa.css"/>
+</head>
+<body>
+
+  <div class="page" id="page">
+
+    <header class="header" id="header">
+      <div class="header-esquerda">
+        <div class="logo"><span>CH</span></div>
+        <span class="header-titulo">Conversa</span>
+      </div>
+      <a class="btn-fechar" href="telaInicial.html" aria-label="Voltar ao início">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="18" y1="6"  x2="6"  y2="18"/>
+          <line x1="6"  y1="6"  x2="18" y2="18"/>
+        </svg>
+      </a>
+    </header>
+
+    <div class="header-linha" aria-hidden="true"></div>
+
+    <!-- mensagens -->
+    <div class="chat-area" id="chatArea"></div>
+
+    <!-- preview de imagem antes de enviar -->
+    <div class="preview-img-wrap" id="previewImgWrap">
+      <img class="preview-img-thumb" id="previewImgThumb" src="" alt="preview"/>
+      <span class="preview-img-nome" id="previewImgNome"></span>
+      <div class="preview-img-remove" id="previewImgRemove">
+        <svg viewBox="0 0 24 24">
+          <line x1="18" y1="6"  x2="6"  y2="18"/>
+          <line x1="6"  y1="6"  x2="18" y2="18"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- barra de input -->
+    <div class="input-bar">
+
+      <!-- botão foto -->
+      <button class="btn-midia" id="btnFoto" type="button" aria-label="Enviar foto">
+        <svg viewBox="0 0 24 24">
+          <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+          <circle cx="12" cy="13" r="4"/>
+        </svg>
+      </button>
+      <input type="file" id="inputFoto" accept="image/*" style="display:none"/>
+
+      <!-- campo de texto -->
+      <div class="input-texto-wrap">
+        <textarea class="input-texto" id="inputTexto"
+          placeholder="Escreva aqui..." rows="1"></textarea>
+      </div>
+
+      <!-- gravar áudio -->
+      <button class="btn-audio" id="btnAudio" type="button" aria-label="Gravar áudio">
+        <svg viewBox="0 0 24 24">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+          <line x1="12" y1="19" x2="12" y2="23"/>
+          <line x1="8"  y1="23" x2="16" y2="23"/>
+        </svg>
+      </button>
+
+      <!-- enviar -->
+      <button class="btn-enviar" id="btnEnviar" type="button" aria-label="Enviar mensagem">
+        <svg viewBox="0 0 24 24">
+          <line x1="22" y1="2" x2="11" y2="13"/>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+        </svg>
+      </button>
+
+    </div>
+
+  </div>
+
+  <script src="../js/backGround.js"></script>
+  <script src="../js/conversa.js"></script>
+
+</body>
+</html>

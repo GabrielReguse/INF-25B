@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inf 25B — Lazer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../css/backGround.css"/>
+  <link rel="stylesheet" href="../css/lazer.css"/>
+</head>
+<body>
+
+  <div class="page" id="page">
+
+    <header class="header" id="header">
+      <div class="header-esquerda">
+        <div class="logo"><span>CH</span></div>
+        <span class="header-titulo">Lazer</span>
+      </div>
+      <a class="btn-fechar" href="telaInicial.html" aria-label="Voltar ao início">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="18" y1="6"  x2="6"  y2="18"/>
+          <line x1="6"  y1="6"  x2="18" y2="18"/>
+        </svg>
+      </a>
+    </header>
+
+    <div class="header-linha-wrap" aria-hidden="true">
+      <div class="header-linha" id="headerLinha"></div>
+    </div>
+
+    <main class="main">
+
+      <!-- seletor de abas -->
+      <div class="abas-wrap" id="abasWrap">
+
+        <button class="aba-btn ativa" id="abaEncontros" type="button">
+          <div class="aba-icone">
+            <svg viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+              <circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <span class="aba-label">Encontros</span>
+        </button>
+
+        <button class="aba-btn" id="abaInstagram" type="button">
+          <div class="aba-icone">
+            <svg viewBox="0 0 24 24">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1.2" fill="var(--purple-light)" stroke="none"/>
+            </svg>
+          </div>
+          <span class="aba-label">Instagram</span>
+        </button>
+
+        <!-- seta indicadora -->
+        <div class="aba-seta-wrap" id="abaSetaWrap">
+          <div class="aba-seta" id="abaSeta">
+            <svg viewBox="0 0 24 24">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- espaço para a seta -->
+      <div style="height: 10px;" aria-hidden="true"></div>
+
+      <!-- painel encontros -->
+      <div class="painel ativo" id="painelEncontros"></div>
+
+      <!-- painel instagram -->
+      <div class="painel" id="painelInstagram"></div>
+
+    </main>
+  </div>
+
+  <script src="../js/backGround.js"></script>
+  <script src="../js/global.js"></script>
+  <script src="../js/lazer.js"></script>
+
+</body>
+</html>
