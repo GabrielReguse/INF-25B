@@ -1,0 +1,165 @@
+// emails permitidos → adicionar todos os alunos aqui
+const emailsPermitidos = new Set([
+    // alunos
+    "aluno1",
+    "aluno2",
+
+    // líder e vice
+    "lider",
+    "gabrielreguse1@gmail.com",
+]);
+
+const emailsAdm = new Set([
+    "gabrielreguse1@gmail.com",
+    "lider",
+]);
+
+// modo atual: 'login' | 'cadastro'
+let modo = 'login';
+
+// referências
+const elTitulo = document.getElementById('formTitulo');
+const elCampos = document.getElementById('campos');
+const elBtnLabel = document.getElementById('btnLabel');
+const elLinkTexto = document.getElementById('linkTexto');
+const elLinkAcao = document.getElementById('linkAcao');
+const elAlerta = document.getElementById('alerta');
+const elForm = document.getElementById('formPrincipal');
+
+function renderModo() {
+    elAlerta.className = 'alerta';
+    elAlerta.textContent = '';
+
+    if (modo === 'login') {
+        elTitulo.textContent = 'Realize seu login!';
+        elBtnLabel.textContent = 'Login';
+        elLinkTexto.textContent = 'Não possui conta? ';
+        elLinkAcao.textContent = 'Faça seu cadastro';
+
+        elCampos.innerHTML = `
+      <div class="campo-grupo">
+        <label class="campo-label" for="inputEmail">E-mail próprio</label>
+        <input class="campo-input" type="email" id="inputEmail" placeholder="seu@email.com" autocomplete="email"/>
+        <span class="campo-erro" id="erroEmail"></span>
+      </div>
+      <div class="campo-grupo">
+        <label class="campo-label" for="inputSenha">Digite sua senha</label>
+        <input class="campo-input" type="password" id="inputSenha" placeholder="••••••••" autocomplete="current-password"/>
+        <span class="campo-erro" id="erroSenha"></span>
+      </div>
+    `;
+    } else {
+        elTitulo.textContent = 'Realize seu cadastro!';
+        elBtnLabel.textContent = 'Cadastro';
+        elLinkTexto.textContent = 'Já possui conta? ';
+        elLinkAcao.textContent = 'Faça seu login';
+
+        elCampos.innerHTML = `
+      <div class="campo-grupo">
+        <label class="campo-label" for="inputNome">Nome completo</label>
+        <input class="campo-input" type="text" id="inputNome" placeholder="Seu nome completo" autocomplete="name"/>
+        <span class="campo-erro" id="erroNome"></span>
+      </div>
+      <div class="campo-grupo">
+        <label class="campo-label" for="inputEmail">E-mail próprio</label>
+        <input class="campo-input" type="email" id="inputEmail" placeholder="seu@email.com" autocomplete="email"/>
+        <span class="campo-erro" id="erroEmail"></span>
+      </div>
+      <div class="campo-grupo">
+        <label class="campo-label" for="inputSenha">Escolha uma senha</label>
+        <input class="campo-input" type="password" id="inputSenha" placeholder="••••••••" autocomplete="new-password"/>
+        <span class="campo-erro" id="erroSenha"></span>
+      </div>
+      <div class="campo-grupo">
+        <label class="campo-label" for="inputConfirma">Confirme sua senha</label>
+        <input class="campo-input" type="password" id="inputConfirma" placeholder="••••••••" autocomplete="new-password"/>
+        <span class="campo-erro" id="erroConfirma"></span>
+      </div>
+    `;
+    }
+}
+
+// troca de modo
+elLinkAcao.addEventListener('click', () => {
+    modo = modo === 'login' ? 'cadastro' : 'login';
+    renderModo();
+});
+
+// submit
+elForm.addEventListener('submit', e => {
+    e.preventDefault();
+    elAlerta.className = 'alerta';
+    elAlerta.textContent = '';
+
+    const email = document.getElementById('inputEmail')?.value.trim().toLowerCase() || '';
+    const senha = document.getElementById('inputSenha')?.value || '';
+
+    // limpa erros anteriores
+    document.querySelectorAll('.campo-erro').forEach(el => el.textContent = '');
+
+    let valido = true;
+
+    if (!email) {
+        document.getElementById('erroEmail').textContent = 'Informe seu e-mail.';
+        valido = false;
+    }
+
+    if (!senha) {
+        document.getElementById('erroSenha').textContent = 'Informe sua senha.';
+        valido = false;
+    }
+
+    if (modo === 'cadastro') {
+        const nome = document.getElementById('inputNome')?.value.trim() || '';
+        const confirma = document.getElementById('inputConfirma')?.value || '';
+
+        if (!nome) {
+            document.getElementById('erroNome').textContent = 'Informe seu nome.';
+            valido = false;
+        }
+
+        if (senha && confirma && senha !== confirma) {
+            document.getElementById('erroConfirma').textContent = 'As senhas não coincidem.';
+            valido = false;
+        }
+
+        if (!valido) return;
+
+        // valida email na whitelist
+        if (!emailsPermitidos.has(email)) {
+            elAlerta.textContent = 'Este e-mail não está autorizado a se cadastrar.';
+            elAlerta.className = 'alerta erro';
+            return;
+        }
+
+        // define role
+        const role = emailsAdm.has(email) ? 'adm' : 'aluno';
+
+        // aqui: integrar com backend/Firebase para criar conta
+        // por enquanto salva no sessionStorage e redireciona
+        sessionStorage.setItem('usuario', JSON.stringify({ nome, email, role }));
+        elAlerta.textContent = 'Cadastro realizado! Redirecionando...';
+        elAlerta.className = 'alerta sucesso';
+        setTimeout(() => { window.location.href = 'telaInicial.html'; }, 1200);
+
+    } else {
+        if (!valido) return;
+
+        // valida email na whitelist
+        if (!emailsPermitidos.has(email)) {
+            elAlerta.textContent = 'E-mail não reconhecido. Acesso negado.';
+            elAlerta.className = 'alerta erro';
+            return;
+        }
+
+        // aqui: integrar com backend/Firebase para autenticar
+        const role = emailsAdm.has(email) ? 'adm' : 'aluno';
+        sessionStorage.setItem('usuario', JSON.stringify({ email, role }));
+        elAlerta.textContent = 'Login realizado! Redirecionando...';
+        elAlerta.className = 'alerta sucesso';
+        setTimeout(() => { window.location.href = 'telaInicial.html'; }, 1200);
+    }
+});
+
+// init
+renderModo();

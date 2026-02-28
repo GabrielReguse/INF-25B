@@ -178,9 +178,7 @@ body {
   gap: 16px;
 }
 
-/* ══════════════════════
-   CALENDÁRIO
-══════════════════════ */
+/* CALENDÁRIO */
 .calendario {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
@@ -304,7 +302,7 @@ body {
   font-weight: 700;
 }
 
-/* selecionado — borda vermelha nos 4 lados */
+/* selecionado - borda vermelha nos 4 lados */
 .cal-dia.selecionado {
   box-shadow: inset 0 0 0 2px var(--cor-prova);
   z-index: 1;
@@ -376,9 +374,7 @@ body {
   flex-shrink: 0;
 }
 
-/* ══════════════════════
-   PAINEL DO DIA
-══════════════════════ */
+/* PAINEL DO DIA */
 .painel-dia {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);

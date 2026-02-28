@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inf 25B — Acesso</title>
+    <link rel="stylesheet" href="../css/backGround.css" />
+    <link rel="stylesheet" href="../css/cadastro.css" />
+</head>
+
+<body>
+
+    <div class="bg-bubbles" aria-hidden="true">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="page" id="page">
+
+        <!-- header sem fundo -->
+        <header class="header">
+            <div class="header-esquerda">
+                <div class="logo"><img src="../assets/logo.png" alt="Logo do Inf 25B"></div>
+                <span class="header-titulo">Inf 25B</span>
+            </div>
+        </header>
+
+        <div class="centro">
+            <div class="form-card">
+
+                <h1 class="form-titulo" id="formTitulo"></h1>
+
+                <form id="formPrincipal" novalidate>
+                    <div class="campos" id="campos"></div>
+
+                    <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 14px;">
+                        <div class="alerta" id="alerta"></div>
+
+                        <button class="btn-principal" type="submit">
+                            <span id="btnLabel"></span>
+                        </button>
+
+                        <p class="link-troca">
+                            <span id="linkTexto"></span><a id="linkAcao" role="button" tabindex="0"></a>
+                        </p>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../js/cadastro.js"></script>
+
+</body>
+
+</html>

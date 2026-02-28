@@ -33,6 +33,7 @@
   }
 */
 const eventos = {
+    // exemplo de dados:
     "2026-03-10": [
         {
             tipo: 'prova',
