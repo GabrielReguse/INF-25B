@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inf 25B — Importantes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="../css/backGround.css" />
+    <link rel="stylesheet" href="../css/importantes.css" />
+</head>
+
+<body>
+
+    <div class="bg-bubbles" aria-hidden="true">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="page" id="page">
+
+        <!-- HEADER -->
+        <header class="header" id="header">
+            <div class="header-esquerda">
+                <div class="logo"><img src="../assets/logo.png" alt="Logo do Inf 25B"></div>
+                <span class="header-titulo">Importantes</span>
+            </div>
+            <a class="btn-fechar" href="telaInicial.html" aria-label="Voltar ao início">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <line x1="18" y1="6" x2="6" y2="18" />
+                    <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+            </a>
+        </header>
+
+        <div class="header-linha-wrap" aria-hidden="true">
+            <div class="header-linha" id="headerLinha"></div>
+        </div>
+
+        <main class="main">
+
+            <!-- SELETORES DE ABA -->
+            <div class="seletores" role="tablist">
+
+                <button class="seletor-btn ativo" role="tab" aria-selected="true" aria-controls="painelHorarios">
+                    <div class="seletor-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="4" width="18" height="18" rx="2" />
+                            <line x1="16" y1="2" x2="16" y2="6" />
+                            <line x1="8" y1="2" x2="8" y2="6" />
+                            <line x1="3" y1="10" x2="21" y2="10" />
+                        </svg>
+                    </div>
+                    <span class="seletor-label">Horários</span>
+                </button>
+
+                <button class="seletor-btn" role="tab" aria-selected="false" aria-controls="painelEspelho">
+                    <div class="seletor-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <rect x="3" y="3" width="7" height="7" rx="1" />
+                            <rect x="14" y="3" width="7" height="7" rx="1" />
+                            <rect x="3" y="14" width="7" height="7" rx="1" />
+                            <rect x="14" y="14" width="7" height="7" rx="1" />
+                        </svg>
+                    </div>
+                    <span class="seletor-label">Espelho de Classe</span>
+                </button>
+
+                <button class="seletor-btn" role="tab" aria-selected="false" aria-controls="painelContatos">
+                    <div class="seletor-icone" aria-hidden="true">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <span class="seletor-label">Contatos</span>
+                </button>
+
+            </div>
+
+            <!-- seta flutuante -->
+            <div class="seta-wrap" aria-hidden="true">
+                <div class="seta-flutuante">
+                    <svg viewBox="0 0 24 24">
+                        <polyline points="6 9 12 15 18 9" />
+                    </svg>
+                </div>
+            </div>
+
+            <!-- CONTEÚDO -->
+            <div class="conteudo">
+
+                <!-- PAINEL: HORÁRIOS -->
+                <div class="painel ativo" id="painelHorarios" role="tabpanel">
+                    <div class="horarios-wrap">
+                        <table class="horarios-table">
+                            <thead>
+                                <tr>
+                                    <th>Horário</th>
+                                    <th>Segunda</th>
+                                    <th>Terça</th>
+                                    <th>Quarta</th>
+                                    <th>Quinta</th>
+                                    <th>Sexta</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>07h20 – 08h05</td>
+                                    <td>PI2</td>
+                                    <td>QUI</td>
+                                    <td>BD</td>
+                                    <td>BD</td>
+                                    <td>ING</td>
+                                </tr>
+                                <tr>
+                                    <td>08h05 – 08h50</td>
+                                    <td>PRG1</td>
+                                    <td>ING</td>
+                                    <td>SOC</td>
+                                    <td>BD</td>
+                                    <td>MAT</td>
+                                </tr>
+                                <tr>
+                                    <td>08h50 – 09h35</td>
+                                    <td>PRG1</td>
+                                    <td>POR</td>
+                                    <td>BIO</td>
+                                    <td>MAT</td>
+                                    <td>BIO</td>
+                                </tr>
+                                <tr class="linha-intervalo">
+                                    <td>09h35 – 09h50</td>
+                                    <td colspan="5">Intervalo</td>
+                                </tr>
+                                <tr>
+                                    <td>09h50 – 10h35</td>
+                                    <td>POR</td>
+                                    <td>GEO</td>
+                                    <td>POR</td>
+                                    <td>ART</td>
+                                    <td>EDF</td>
+                                </tr>
+                                <tr>
+                                    <td>10h35 – 11h20</td>
+                                    <td>RED</td>
+                                    <td>GEO</td>
+                                    <td>SOC</td>
+                                    <td>ART</td>
+                                    <td>EDF</td>
+                                </tr>
+                                <tr class="linha-almoco">
+                                    <td>11h20 – 12h50</td>
+                                    <td colspan="5">Almoço</td>
+                                </tr>
+                                <tr>
+                                    <td>12h50 – 13h35</td>
+                                    <td>QUI</td>
+                                    <td>PRG1</td>
+                                    <td>---</td>
+                                    <td>ESO</td>
+                                    <td>---</td>
+                                </tr>
+                                <tr>
+                                    <td>13h35 – 14h20</td>
+                                    <td>---</td>
+                                    <td>PRG1</td>
+                                    <td>---</td>
+                                    <td>FIS</td>
+                                    <td>---</td>
+                                </tr>
+                                <tr>
+                                    <td>14h20 – 15h05</td>
+                                    <td>HIS</td>
+                                    <td>---</td>
+                                    <td>---</td>
+                                    <td>FIS</td>
+                                    <td>---</td>
+                                </tr>
+                                <tr class="linha-intervalo">
+                                    <td>15h05 – 15h20</td>
+                                    <td colspan="5">Intervalo</td>
+                                </tr>
+                                <tr>
+                                    <td>15h20 – 16h05</td>
+                                    <td>HIS</td>
+                                    <td>FIL</td>
+                                    <td>---</td>
+                                    <td>ESO</td>
+                                    <td>---</td>
+                                </tr>
+                                <tr>
+                                    <td>16h05 – 16h50</td>
+                                    <td>FIL</td>
+                                    <td>RED</td>
+                                    <td>---</td>
+                                    <td>MAT</td>
+                                    <td>---</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- PAINEL: ESPELHO DE CLASSE -->
+                <div class="painel" id="painelEspelho" role="tabpanel">
+                    <div class="espelho-wrap">
+                        <div class="espelho-info">
+                            <div class="espelho-label">
+                                Sala
+                                <span>— posições das carteiras</span>
+                            </div>
+                            <div class="espelho-referencia">
+                                <span class="ref-porta">← Janela</span>
+                                <span class="ref-porta">Porta →</span>
+                            </div>
+                        </div>
+                        <div class="espelho-grid" style="grid-template-columns: repeat(5, 1fr);">
+                            <div class="cadeira ocupada">Jefferson</div>
+                            <div class="cadeira ocupada">Miguel</div>
+                            <div class="cadeira ocupada">Kaue</div>
+                            <div class="cadeira ocupada">Leonardo</div>
+                            <div class="cadeira ocupada">Gabriel E</div>
+                            <div class="cadeira ocupada">Liliane</div>
+                            <div class="cadeira ocupada">Rycardo</div>
+                            <div class="cadeira ocupada">Pedro A</div>
+                            <div class="cadeira ocupada">Andressa</div>
+                            <div class="cadeira ocupada">João V</div>
+                            <div class="cadeira ocupada">João G</div>
+                            <div class="cadeira ocupada">Gregory</div>
+                            <div class="cadeira ocupada">Pedro H</div>
+                            <div class="cadeira ocupada">Mateus</div>
+                            <div class="cadeira ocupada">Eduardo</div>
+                            <div class="cadeira ocupada">Gabriel R</div>
+                            <div class="cadeira ocupada">Ana C</div>
+                            <div class="cadeira ocupada">Lara</div>
+                            <div class="cadeira ocupada">Amanda</div>
+                            <div class="cadeira ocupada">Gabriela</div>
+                            <div class="cadeira ocupada">Vinicius</div>
+                            <div class="cadeira ocupada">Théo</div>
+                            <div class="cadeira ocupada">Carlos</div>
+                            <div class="cadeira ocupada">João R</div>
+                            <div class="cadeira ocupada">Stephany</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PAINEL: CONTATOS -->
+                <div class="painel" id="painelContatos">
+                    <div class="contatos-grid">
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">José Dimas d'Ávila Maciel Monteiro</div>
+                                <div class="contato-materia">Filosofia</div>
+                                <a class="contato-email" href="mailto:jose.monteiro@ifc.edu.br"
+                                    target="_blank">jose.monteiro@ifc.edu.br</a>
+                            </div>
+                        </div>
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">Marcos Yuzuru de Oliveira Camada</div>
+                                <div class="contato-materia">Programação 1</div>
+                                <a class="contato-email" href="mailto:marcos.camada@ifc.edu.br"
+                                    target="_blank">marcos.camada@ifc.edu.br</a>
+                            </div>
+                        </div>
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">Paulo Thiago Piazza</div>
+                                <div class="contato-materia">Língua Portuguesa</div>
+                                <a class="contato-email" href="mailto:paulo.piazza@ifc.edu.br"
+                                    target="_blank">paulo.piazza@ifc.edu.br</a>
+                            </div>
+                        </div>
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">Carolina dos Santos Cardoso</div>
+                                <div class="contato-materia">Química</div>
+                                <a class="contato-email" href="mailto:carolina.cardoso@ifc.edu.br"
+                                    target="_blank">carolina.cardoso@ifc.edu.br</a>
+                            </div>
+                        </div>
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">Paulo Henrique Tôrres Valgas</div>
+                                <div class="contato-materia">História</div>
+                                <a class="contato-email" href="mailto:paulo.valgas@ifc.edu.br"
+                                    target="_blank">paulo.valgas@ifc.edu.br</a>
+                            </div>
+                        </div>
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">Danielle Amanda Raimundo da Silva</div>
+                                <div class="contato-materia">Língua Inglesa</div>
+                                <a class="contato-email" href="mailto:danielle.silva@ifc.edu.br"
+                                    target="_blank">danielle.silva@ifc.edu.br</a>
+                            </div>
+                        </div>
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">Fernando José Taques</div>
+                                <div class="contato-materia">Sociologia</div>
+                                <a class="contato-email" href="mailto:fernando.taques@ifc.edu.br"
+                                    target="_blank">fernando.taques@ifc.edu.br</a>
+                            </div>
+                        </div>
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">Juliana Amóra Martins</div>
+                                <div class="contato-materia">Artes</div>
+                                <a class="contato-email" href="mailto:juliana.martins@ifc.edu.br"
+                                    target="_blank">juliana.martins@ifc.edu.br</a>
+                            </div>
+                        </div>
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">Cristian Adriano Gruber</div>
+                                <div class="contato-materia">Banco de Dados / Engenharia de Software</div>
+                                <a class="contato-email" href="mailto:cristiangruber@gmail.com"
+                                    target="_blank">cristiangruber@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">Luís Carlos Rodrigues</div>
+                                <div class="contato-materia">Educação Física</div>
+                                <a class="contato-email" href="mailto:luis.rodrigues@ifc.edu.br"
+                                    target="_blank">luis.rodrigues@ifc.edu.br</a>
+                            </div>
+                        </div>
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">Herbert Silva Monteiro</div>
+                                <div class="contato-materia">Biologia</div>
+                                <a class="contato-email" href="mailto:herbert.monteiro@ifc.edu.br"
+                                    target="_blank">herbert.monteiro@ifc.edu.br</a>
+                            </div>
+                        </div>
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">Kathia Mariane Fehsenfeld</div>
+                                <div class="contato-materia">Física</div>
+                                <a class="contato-email" href="mailto:kathia.fehsenfeld@ifc.edu.br"
+                                    target="_blank">kathia.fehsenfeld@ifc.edu.br</a>
+                            </div>
+                        </div>
+
+                        <div class="contato-card">
+                            <div class="contato-avatar">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </div>
+                            <div class="contato-info">
+                                <div class="contato-nome">Eduardo de Araújo da Silva</div>
+                                <div class="contato-materia">Geografia</div>
+                                <a class="contato-email" href="mailto:eduardo.silva@ifc.edu.br"
+                                    target="_blank">eduardo.silva@ifc.edu.br</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+        </main>
+    </div>
+
+    <script src="../js/global.js"></script>
+    <script src="../js/importantes.js"></script>
+
+</body>
+
+</html>
