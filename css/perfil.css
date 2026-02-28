@@ -301,7 +301,7 @@ body {
     fill: rgba(124, 58, 237, .35);
 }
 
-/* overlay de troca de foto (visível só no modo edição) */
+/* overlay de troca de foto */
 .foto-trocar {
     position: absolute;
     inset: 0;

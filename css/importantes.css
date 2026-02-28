@@ -379,9 +379,7 @@ body {
     stroke-linejoin: round;
 }
 
-/* ══════════════════════
-   HORÁRIOS
-══════════════════════ */
+/* HORÁRIOS */
 .horarios-wrap {
     overflow-x: auto;
     border-radius: var(--radius);
@@ -476,9 +474,7 @@ body {
     width: 100%;
 }
 
-/* ══════════════════════
-   ESPELHO DE CLASSE
-══════════════════════ */
+/* ESPELHO DE CLASSE */
 .espelho-wrap {
     background: var(--bg-card);
     border: 1px solid var(--border-subtle);
@@ -538,7 +534,6 @@ body {
 .espelho-grid {
     display: grid;
     gap: 8px;
-    /* colunas definidas via JS / inline style */
 }
 
 .cadeira {

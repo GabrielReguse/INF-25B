@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Inf 25B — Tarefas / Provas</title>
+  <link rel="stylesheet" href="../css/backGround.css"/>
+  <link rel="stylesheet" href="../css/tarefasProvas.css"/>
+</head>
+<body>
+
+  <div class="bg-bubbles" aria-hidden="true">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+
+  <div class="page" id="page">
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+      <div class="header-esquerda">
+        <div class="logo"><img src="../assets/logo.png" alt="Logo Inf 25B"/></div>
+        <span class="header-titulo">Tarefas / Provas</span>
+      </div>
+      <a class="btn-fechar" href="telaInicial.html" aria-label="Voltar ao início">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <line x1="18" y1="6"  x2="6"  y2="18"/>
+          <line x1="6"  y1="6"  x2="18" y2="18"/>
+        </svg>
+      </a>
+    </header>
+
+    <div class="header-linha-wrap" aria-hidden="true">
+      <div class="header-linha" id="headerLinha"></div>
+    </div>
+
+    <main class="main">
+
+      <!-- CALENDÁRIO -->
+      <div class="calendario">
+
+        <!-- navegação mês -->
+        <div class="cal-nav">
+          <button class="cal-nav-btn" id="btnMesAnterior" aria-label="Mês anterior">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+          </button>
+
+          <span class="cal-mes-titulo" id="calMesTitulo"></span>
+
+          <button class="cal-nav-btn" id="btnMesProximo" aria-label="Próximo mês">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- dias da semana -->
+        <div class="cal-semana" aria-hidden="true">
+          <div class="cal-semana-dia">Dom</div>
+          <div class="cal-semana-dia">Seg</div>
+          <div class="cal-semana-dia">Ter</div>
+          <div class="cal-semana-dia">Qua</div>
+          <div class="cal-semana-dia">Qui</div>
+          <div class="cal-semana-dia">Sex</div>
+          <div class="cal-semana-dia">Sáb</div>
+        </div>
+
+        <!-- grade de dias (preenchida pelo JS) -->
+        <div class="cal-grade" id="calGrade" role="grid"></div>
+
+        <!-- legenda -->
+        <div class="cal-legenda" aria-hidden="true">
+          <div class="legenda-item">
+            <div class="legenda-dot" style="background:var(--cor-prova)"></div>
+            <span>Prova</span>
+          </div>
+          <div class="legenda-item">
+            <div class="legenda-dot" style="background:var(--cor-tarefa)"></div>
+            <span>Tarefa</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PAINEL DO DIA (oculto por padrão) -->
+      <div class="painel-dia" id="painelDia" hidden>
+
+        <div class="painel-dia-header">
+          <span class="painel-dia-titulo" id="painelDiaTitulo"></span>
+          <button class="btn-fechar-painel" id="btnFecharPainel" aria-label="Fechar">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <line x1="18" y1="6"  x2="6"  y2="18"/>
+              <line x1="6"  y1="6"  x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="eventos-lista" id="eventosList"></div>
+
+      </div>
+
+    </main>
+  </div>
+
+  <script src="../js/global.js"></script>
+  <script src="../js/tarefasProvas.js"></script>
+
+</body>
+</html>

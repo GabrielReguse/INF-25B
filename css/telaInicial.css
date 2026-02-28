@@ -355,7 +355,7 @@ body {
     margin-top: 4px;
 }
 
-/* cores dos indicadores — use via classe */
+/* cores dos indicadores - use via classe */
 .ind-roxo {
     background: var(--purple-main);
     box-shadow: 0 0 5px rgba(124, 58, 237, .55);
@@ -453,7 +453,7 @@ body {
     transform: scale(.97);
 }
 
-/* card Conversa — grande */
+/* card Conversa - grande */
 .nav-card-grande {
     padding: 20px 22px;
     gap: 16px;
