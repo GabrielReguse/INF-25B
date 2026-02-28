@@ -20,3 +20,16 @@ document.querySelectorAll('a[href]').forEach(link => {
     setTimeout(() => { window.location.href = destino; }, 260);
   });
 });
+
+// enviar email
+document.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', e => {
+    const href = link.getAttribute('href');
+
+    if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+      return;
+    }
+
+    e.preventDefault();
+  });
+});
