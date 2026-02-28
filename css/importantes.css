@@ -87,6 +87,8 @@ body {
 
 /* HEADER */
 .header {
+    background: rgba(15, 15, 26, 0.95);
+    backdrop-filter: blur(10px);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -305,16 +307,18 @@ body {
 }
 
 .seta-flutuante {
-  position: absolute;
-  top: 0;
-  left: 0; /* base fixa */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: calc(33.333% - 8px);
-  transform: translateX(0) translateX(-50%); /* estado inicial */
-  transition: transform .35s cubic-bezier(.4, 0, .2, 1);
-  will-change: transform;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* base fixa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(33.333% - 8px);
+    transform: translateX(0) translateX(-50%);
+    /* estado inicial */
+    transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+    will-change: transform;
 }
 
 .seta-flutuante svg {
