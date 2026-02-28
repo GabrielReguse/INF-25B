@@ -305,13 +305,16 @@ body {
 }
 
 .seta-flutuante {
-    position: absolute;
-    top: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: calc(33.333% - 8px);
-    transition: left .35s cubic-bezier(.4, 0, .2, 1);
+  position: absolute;
+  top: 0;
+  left: 0; /* base fixa */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(33.333% - 8px);
+  transform: translateX(0) translateX(-50%); /* estado inicial */
+  transition: transform .35s cubic-bezier(.4, 0, .2, 1);
+  will-change: transform;
 }
 
 .seta-flutuante svg {
