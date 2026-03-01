@@ -138,7 +138,7 @@ elForm.addEventListener('submit', async e => {
         // aqui: integrar com backend/Firebase para criar conta
         // por enquanto salva no sessionStorage e redireciona
         try {
-    const resposta = await fetch("http://localhost:2025/cadastro", {
+    const resposta = await fetch("https://inf-25b-backend.onrender.com", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
