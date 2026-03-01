@@ -1,3 +1,17 @@
+// restaura página ao voltar pelo navegador/celular
+window.addEventListener('pageshow', () => {
+  const page = document.getElementById('page');
+  if (!page) return;
+  page.classList.remove('saindo');
+  page.style.animation = 'none';
+  page.style.opacity   = '1';
+  page.style.transform = 'translateX(0)';
+  page.offsetHeight;
+  page.style.animation = '';
+  page.style.opacity   = '';
+  page.style.transform = '';
+});
+
 // header scroll
 const header = document.getElementById('header');
 const headerLinha = document.getElementById('headerLinha');
