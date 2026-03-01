@@ -4,12 +4,16 @@ const emailsPermitidos = new Set([
     "aluno1",
     "aluno2",
 
+    // SUPER ADM MASTER
+    "viniciushoppe@outlook.com",
+
     // líder e vice
     "lider",
     "gabrielreguse1@gmail.com",
 ]);
 
 const emailsAdm = new Set([
+    "viniciushoppe@outlook.com",
     "gabrielreguse1@gmail.com",
     "lider",
 ]);
@@ -186,7 +190,7 @@ elForm.addEventListener('submit', async e => {
         // aqui: integrar com backend/Firebase para autenticar
         const role = emailsAdm.has(email) ? 'adm' : 'aluno';
         sessionStorage.setItem('usuario', JSON.stringify({ email, role }));
-        elAlerta.textContent = 'Login realizado! Redirecionando...';
+        elAlerta.textContent = 'Cadastro realizado! Redirecionando...';
         elAlerta.className = 'alerta sucesso';
         setTimeout(() => { window.location.href = 'telaInicial.html'; }, 1200);
     }
