@@ -4,12 +4,16 @@ const emailsPermitidos = new Set([
     "aluno1",
     "aluno2",
 
+    // SUPER ADM MASTER
+    "viniciushoppe@outlook.com",
+
     // líder e vice
     "lider",
     "gabrielreguse1@gmail.com",
 ]);
 
 const emailsAdm = new Set([
+    "viniciushoppe@outlook.com",
     "gabrielreguse1@gmail.com",
     "lider",
 ]);
@@ -86,7 +90,7 @@ elLinkAcao.addEventListener('click', () => {
 });
 
 // submit
-elForm.addEventListener('submit', e => {
+elForm.addEventListener('submit', async e => {
     e.preventDefault();
     elAlerta.className = 'alerta';
     elAlerta.textContent = '';
@@ -137,10 +141,41 @@ elForm.addEventListener('submit', e => {
 
         // aqui: integrar com backend/Firebase para criar conta
         // por enquanto salva no sessionStorage e redireciona
-        sessionStorage.setItem('usuario', JSON.stringify({ nome, email, role }));
-        elAlerta.textContent = 'Cadastro realizado! Redirecionando...';
-        elAlerta.className = 'alerta sucesso';
-        setTimeout(() => { window.location.href = 'telaInicial.html'; }, 1200);
+        try {
+    const resposta = await fetch("https://inf-25b-backend.onrender.com/cadastro", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        nome,
+        email,
+        senha,
+        role
+    })
+});
+
+    const dados = await resposta.json();
+
+    if (!resposta.ok) {
+        elAlerta.textContent = dados.erro || "Credenciais inválidas.";
+        elAlerta.className = "alerta erro";
+        return;
+    }
+
+    sessionStorage.setItem("usuario", JSON.stringify(dados.usuario));
+
+    elAlerta.textContent = "Login realizado! Redirecionando...";
+    elAlerta.className = "alerta sucesso";
+
+    setTimeout(() => {
+        window.location.href = "telaInicial.html";
+    }, 1200);
+
+} catch (erro) {
+    elAlerta.textContent = "Erro ao conectar com o servidor.";
+    elAlerta.className = "alerta erro";
+}
 
     } else {
         if (!valido) return;
@@ -155,7 +190,7 @@ elForm.addEventListener('submit', e => {
         // aqui: integrar com backend/Firebase para autenticar
         const role = emailsAdm.has(email) ? 'adm' : 'aluno';
         sessionStorage.setItem('usuario', JSON.stringify({ email, role }));
-        elAlerta.textContent = 'Login realizado! Redirecionando...';
+        elAlerta.textContent = 'Cadastro realizado! Redirecionando...';
         elAlerta.className = 'alerta sucesso';
         setTimeout(() => { window.location.href = 'telaInicial.html'; }, 1200);
     }
