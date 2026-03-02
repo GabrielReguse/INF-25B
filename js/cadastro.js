@@ -190,7 +190,7 @@ elForm.addEventListener('submit', async e => {
         // aqui: integrar com backend/Firebase para autenticar
         const role = emailsAdm.has(email) ? 'adm' : 'aluno';
         sessionStorage.setItem('usuario', JSON.stringify({ email, role }));
-        elAlerta.textContent = 'Cadastro realizado! Redirecionando...';
+        elAlerta.textContent = 'Login realizado! Redirecionando...';
         elAlerta.className = 'alerta sucesso';
         setTimeout(() => { window.location.href = 'telaInicial.html'; }, 1200);
     }
