@@ -137,7 +137,7 @@ elForm.addEventListener('submit', async e => {
         }
 
         // define role
-        const role = emailsAdm.has(email) ? 'adm' : 'aluno';
+        const role = emailsAdm.has(email) ? 'admin' : 'aluno';
 
         // aqui: integrar com backend/Firebase para criar conta
         // por enquanto salva no sessionStorage e redireciona
