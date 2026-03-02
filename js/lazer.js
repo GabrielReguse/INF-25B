@@ -30,7 +30,10 @@ function carregarSugestoes() {
     } catch (_) { }
 }
 
-const usuario = JSON.parse(sessionStorage.getItem('usuario') || '{}');
+const usuario = (() => {
+  try { return JSON.parse(sessionStorage.getItem('usuario') || '{}'); }
+  catch { return {}; }
+})();
 const meuNome = usuario.nome || usuario.email || 'Você';
 
 // votos do instagram persistidos por sessão

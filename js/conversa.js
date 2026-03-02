@@ -1,6 +1,9 @@
 const API = "https://inf-25b-backend.onrender.com";
 
-const usuario = JSON.parse(sessionStorage.getItem('usuario') || '{"nome":"Você","email":"voce@ifc.edu.br"}');
+const usuario = (() => {
+  try { return JSON.parse(sessionStorage.getItem('usuario') || '{}'); }
+  catch { return {}; }
+})();
 const meuNome = usuario.nome || 'Você';
 const meuId = usuario.id || null;
 const minhaFoto = usuario.foto || null;

@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../css/backGround.css" />
     <link rel="stylesheet" href="../css/telaInicial.css" />
 </head>
-<script src="../js/telaInicial.js"></script>
+
 <body>
 
     <div class="page" id="page">
@@ -18,7 +18,6 @@
                 <div class="logo"><img src="../assets/logo.png" alt="Logo da Inf 25B"></div>
                 <span class="header-titulo">Inf 25B</span>
             </div>
-            <!-- trocar SVG por <img> com foto -->
             <a class="header-avatar" href="perfil.html" aria-label="Perfil">
                 <svg class="avatar-svg" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4
@@ -49,7 +48,6 @@
                     </button>
                 </div>
 
-                <!-- 2 mais próximos -->
                 <div class="bloco-itens" id="itensDestaques">
                     <div class="bloco-vazio">
                         <svg viewBox="0 0 24 24">
@@ -57,19 +55,8 @@
                         </svg>
                         <span>Nenhum destaque no momento.</span>
                     </div>
-                    <!-- modelo de como adicionar um item nos destaques/avisos:
-                     
-            <div class="bloco-item">
-              <div class="item-indicador ind-red"></div>
-              <div class="item-texto">
-                <div class="item-titulo">Título</div>
-                <div class="item-detalhe">Data · Detalhe</div>
-              </div>
-            </div>
-          -->
                 </div>
 
-                <!-- 3º item em diante -->
                 <div class="bloco-extras" id="extrasDestaques" aria-hidden="true">
                     <div class="bloco-extras-inner bloco-itens"></div>
                 </div>
@@ -90,7 +77,6 @@
                     </button>
                 </div>
 
-                <!-- 2 mais recentes -->
                 <div class="bloco-itens" id="itensAvisos">
                     <div class="bloco-vazio">
                         <svg viewBox="0 0 24 24">
@@ -99,10 +85,8 @@
                         </svg>
                         <span>Nenhum aviso no momento.</span>
                     </div>
-                    <!-- mesmo modelo de item acima -->
                 </div>
 
-                <!-- 3º item em diante -->
                 <div class="bloco-extras" id="extrasAvisos" aria-hidden="true">
                     <div class="bloco-extras-inner bloco-itens"></div>
                 </div>
@@ -112,7 +96,6 @@
             <nav aria-label="Navegação principal">
                 <div class="nav-grade">
 
-                    <!-- conversa: largo -->
                     <a class="nav-card nav-card-grande" href="conversa.html">
                         <div class="nav-icone icone-grande" aria-hidden="true">
                             <svg width="24" height="24" viewBox="0 0 24 24" stroke="url(#gConversa)" stroke-width="1.8">
@@ -130,13 +113,10 @@
                             <div class="nav-desc">Chat em tempo real com a turma</div>
                         </div>
                         <div class="nav-seta" aria-hidden="true">
-                            <svg viewBox="0 0 24 24">
-                                <polyline points="9 18 15 12 9 6" />
-                            </svg>
+                            <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6" /></svg>
                         </div>
                     </a>
 
-                    <!-- 2x2 -->
                     <div class="nav-grade-2x2">
 
                         <a class="nav-card nav-card-pequeno" href="importantes.html">
@@ -201,14 +181,14 @@
         </main>
     </div>
 
-    <script src="../js/global.js"></script>
+    <!-- scripts no final do body, sem duplicatas -->
     <script src="../js/background.js"></script>
     <script src="../js/global.js"></script>
+    <script src="../js/telaInicial.js"></script>
     <script>
-        // toggle blocos
         const blocos = {
             destaques: { btn: 'btnDestaques', ext: 'extrasDestaques' },
-            avisos: { btn: 'btnAvisos', ext: 'extrasAvisos' },
+            avisos:    { btn: 'btnAvisos',    ext: 'extrasAvisos'    },
         };
 
         function alternarBloco(id) {
@@ -224,5 +204,4 @@
     </script>
 
 </body>
-
 </html>

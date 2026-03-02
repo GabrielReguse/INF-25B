@@ -1,21 +1,23 @@
 const API = "https://inf-25b-backend.onrender.com";
 
 const TIPOS = [
-  { id: 'encontro',   label: '🎉 Encontro',    descricao: 'Propor um rolê ou saída da turma', destino: 'lazer' },
-  { id: 'instagram',  label: '📸 Instagram',   descricao: 'Ideia de post ou story para o perfil', destino: 'lazer' },
-  { id: 'melhoria',   label: '🛠️ Melhoria',    descricao: 'Sugestão para o site ou organização', destino: 'adm' },
-  { id: 'outro',      label: '💬 Outro',        descricao: 'Qualquer outra sugestão', destino: 'adm' },
+  { id: 'encontro',  label: '🎉 Encontro',  descricao: 'Propor um rolê ou saída da turma',    destino: 'lazer' },
+  { id: 'instagram', label: '📸 Instagram', descricao: 'Ideia de post ou story para o perfil', destino: 'lazer' },
+  { id: 'melhoria',  label: '🛠️ Melhoria',  descricao: 'Sugestão para o site ou organização',  destino: 'adm'   },
+  { id: 'outro',     label: '💬 Outro',     descricao: 'Qualquer outra sugestão',              destino: 'adm'   },
 ];
 
 let tipoSelecionado = null;
 let etapa = 1;
 
-const elBarra = document.getElementById('barraProgresso');
-const elCorpo = document.getElementById('corpoFormulario');
+// IDs corretos conforme sugestoes.html
+const elBarra    = document.getElementById('etapaBarraFill');
+const elCorpo    = document.getElementById('cardCorpo');
+const elContador = document.getElementById('etapaContador');
 
 function atualizarBarra() {
-  if (!elBarra) return;
-  elBarra.style.width = etapa === 1 ? '50%' : '100%';
+  if (elBarra)    elBarra.style.width = etapa === 1 ? '50%' : '100%';
+  if (elContador) elContador.textContent = `Etapa ${etapa}/2`;
 }
 
 function renderEtapa1() {
@@ -35,7 +37,9 @@ function renderEtapa1() {
   elCorpo.querySelectorAll('.tipo-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       tipoSelecionado = btn.dataset.id;
-      elCorpo.querySelectorAll('.tipo-btn').forEach(b => b.classList.toggle('selecionado', b.dataset.id === tipoSelecionado));
+      elCorpo.querySelectorAll('.tipo-btn').forEach(b =>
+        b.classList.toggle('selecionado', b.dataset.id === tipoSelecionado)
+      );
       document.getElementById('btnAvancar').disabled = false;
     });
   });
@@ -81,27 +85,24 @@ function trocarEtapa(nova) {
 }
 
 async function publicar() {
-  const titulo = document.getElementById('inputTitulo').value.trim();
-  const desc = document.getElementById('inputDesc').value.trim();
-  const elAlerta = document.getElementById('alerta');
+  const titulo      = document.getElementById('inputTitulo').value.trim();
+  const desc        = document.getElementById('inputDesc').value.trim();
+  const elAlerta    = document.getElementById('alerta');
   const btnPublicar = document.getElementById('btnPublicar');
 
   document.getElementById('erroTitulo').textContent = '';
-  document.getElementById('erroDesc').textContent = '';
+  document.getElementById('erroDesc').textContent   = '';
   elAlerta.className = 'alerta';
 
   let valido = true;
-  if (!titulo) {
-    document.getElementById('erroTitulo').textContent = 'Informe um título.';
-    valido = false;
-  }
-  if (!desc) {
-    document.getElementById('erroDesc').textContent = 'Escreva uma descrição.';
-    valido = false;
-  }
+  if (!titulo) { document.getElementById('erroTitulo').textContent = 'Informe um título.';     valido = false; }
+  if (!desc)   { document.getElementById('erroDesc').textContent   = 'Escreva uma descrição.'; valido = false; }
   if (!valido) return;
 
-  const usuario = JSON.parse(sessionStorage.getItem('usuario') || '{}');
+  const usuario = (() => {
+    try { return JSON.parse(sessionStorage.getItem('usuario') || '{}'); } catch { return {}; }
+  })();
+
   if (!usuario.id) {
     elAlerta.textContent = 'Você precisa estar logado para enviar sugestões.';
     elAlerta.className = 'alerta erro';
@@ -133,7 +134,6 @@ async function publicar() {
 
     elAlerta.textContent = 'Sugestão enviada com sucesso!';
     elAlerta.className = 'alerta sucesso';
-
     setTimeout(() => { window.location.href = 'telaInicial.html'; }, 1400);
 
   } catch (err) {
