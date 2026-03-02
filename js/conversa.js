@@ -1,23 +1,19 @@
+const API = "https://inf-25b-backend.onrender.com";
+
 const usuario = JSON.parse(sessionStorage.getItem('usuario') || '{"nome":"Você","email":"voce@ifc.edu.br"}');
 const meuNome = usuario.nome || 'Você';
+const meuId = usuario.id || null;
 const minhaFoto = usuario.foto || null;
 
-// mensagens demonstracao - em produção viriam do backend/websocket
-let mensagens = [
-  { id: 1, autor: 'João V.', foto: null, tipo: 'texto', conteudo: 'Oi pessoal, tudo bem?', hora: '08:14', data: hoje() },
-  { id: 2, autor: 'Ana C.',  foto: null, tipo: 'texto', conteudo: 'Tudo sim! Alguém sabe o conteúdo da prova de amanhã?', hora: '08:16', data: hoje() },
-  { id: 3, autor: meuNome,   foto: minhaFoto, tipo: 'texto', conteudo: 'Acho que é trigonometria e funções. Confirma aí!', hora: '08:17', data: hoje(), eu: true },
-  { id: 4, autor: 'Gabriel E.', foto: null, tipo: 'audio', duracao: '0:24', onda: gerarOnda(), hora: '08:20', data: hoje() },
-  { id: 5, autor: meuNome,   foto: minhaFoto, tipo: 'texto', conteudo: 'Alguém vai para a sala de estudos hoje à tarde?', hora: '08:22', data: hoje(), eu: true },
-];
-
-let proximoId = mensagens.length + 1;
+let mensagens = [];
+let proximoId = 1;
 let imagemPendente = null;
 let mediaRecorder = null;
 let gravando = false;
 let chunksAudio = [];
 let timerGrav = null;
 let segundosGrav = 0;
+let poolingInterval = null;
 
 const elChat       = document.getElementById('chatArea');
 const elInput      = document.getElementById('inputTexto');
@@ -115,8 +111,7 @@ function renderTodas() {
   scrollBaixo();
 }
 
-function adicionarMensagem(msg) {
-  // separador de data se for novo dia
+function adicionarMensagemLocal(msg) {
   const ultima = mensagens[mensagens.length - 1];
   if (!ultima || ultima.data !== msg.data) {
     const sep = document.createElement('div');
@@ -134,12 +129,40 @@ function adicionarMensagem(msg) {
   scrollBaixo();
 }
 
-function enviarTexto() {
+// ─── BACKEND: BUSCAR MENSAGENS ────────────────────────────────
+async function carregarMensagens() {
+  try {
+    const resposta = await fetch(`${API}/mensagens`);
+    const dados = await resposta.json();
+
+    // só re-renderiza se tiver mensagens novas
+    if (dados.length === mensagens.length) return;
+
+    mensagens = dados.map(m => ({
+      id: m._id,
+      autor: m.autor?.nome || 'Usuário',
+      foto: null,
+      tipo: 'texto',
+      conteudo: m.texto,
+      hora: new Date(m.criadaEm).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }),
+      data: new Date(m.criadaEm).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }),
+      eu: m.autor?._id === meuId || m.autor === meuId
+    }));
+
+    renderTodas();
+  } catch (err) {
+    console.error("Erro ao carregar mensagens:", err);
+  }
+}
+
+// ─── BACKEND: ENVIAR MENSAGEM ─────────────────────────────────
+async function enviarTexto() {
   const texto = elInput.value.trim();
   if (!texto && !imagemPendente) return;
 
+  // imagens ainda ficam só local (não temos upload de arquivo no backend)
   if (imagemPendente) {
-    adicionarMensagem({
+    adicionarMensagemLocal({
       id: proximoId++,
       autor: meuNome,
       foto: minhaFoto,
@@ -153,8 +176,12 @@ function enviarTexto() {
   }
 
   if (texto) {
-    adicionarMensagem({
-      id: proximoId++,
+    elInput.value = '';
+    elInput.style.height = 'auto';
+
+    // otimismo: mostra a mensagem localmente de imediato
+    adicionarMensagemLocal({
+      id: `temp-${Date.now()}`,
       autor: meuNome,
       foto: minhaFoto,
       tipo: 'texto',
@@ -163,8 +190,18 @@ function enviarTexto() {
       data: hoje(),
       eu: true,
     });
-    elInput.value = '';
-    elInput.style.height = 'auto';
+
+    if (!meuId) return; // sem login, não manda pro backend
+
+    try {
+      await fetch(`${API}/mensagens`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ autor: meuId, texto })
+      });
+    } catch (err) {
+      console.error("Erro ao enviar mensagem:", err);
+    }
   }
 }
 
@@ -206,7 +243,7 @@ function limparPreview() {
   elPreviewNome.textContent = '';
 }
 
-// áudio
+// áudio (fica local — sem upload)
 elBtnAudio.addEventListener('click', async () => {
   if (!gravando) {
     try {
@@ -219,7 +256,7 @@ elBtnAudio.addEventListener('click', async () => {
         const blob = new Blob(chunksAudio, { type: 'audio/webm' });
         const url  = URL.createObjectURL(blob);
         const dur  = formatarDuracao(segundosGrav);
-        adicionarMensagem({
+        adicionarMensagemLocal({
           id: proximoId++,
           autor: meuNome,
           foto: minhaFoto,
@@ -256,7 +293,7 @@ function formatarDuracao(s) {
   return `${m}:${String(r).padStart(2,'0')}`;
 }
 
-// player de áudio simples
+// player de áudio
 const audioAtivos = {};
 
 function toggleAudio(btn, src) {
@@ -269,7 +306,6 @@ function toggleAudio(btn, src) {
     return;
   }
 
-  // pausa outros
   Object.entries(audioAtivos).forEach(([s, a]) => {
     a.pause();
     delete audioAtivos[s];
@@ -299,5 +335,16 @@ function escapeHTML(str) {
   return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
+// ─── POLLING: atualiza mensagens a cada 5s ────────────────────
+function iniciarPolling() {
+  carregarMensagens();
+  poolingInterval = setInterval(carregarMensagens, 5000);
+}
+
+// para o polling se sair da página
+window.addEventListener('beforeunload', () => {
+  if (poolingInterval) clearInterval(poolingInterval);
+});
+
 // init
-renderTodas();
+iniciarPolling();
